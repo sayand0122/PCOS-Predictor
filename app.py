@@ -16,16 +16,13 @@ model = pickle.load(open('model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
-######################################################################################################
-@app.route('/about') 
-def about():                                                 #CHANGES MADE ONLY HERE
-    return render_template('about.html')
+
 ######################################################################################################
 
-@app.route("/practice")
+@app.route("/predict")
 def practice():
     """ return the rendered template """
-    return render_template("practice.html")
+    return render_template("predictor.html")
 
 #######################################################################################################
 def check_user_input(input):
@@ -64,9 +61,9 @@ def predict():
                     x=4
 ##################################################################################################################
                else:
-                   return render_template('practice.html', prediction_text='Kindly enter valid input ')
+                   return render_template('predictor.html', prediction_text='Kindly enter valid input ')
          else:                                                                                            #BLOCK CAN BE REMOVED
-               return render_template('practice.html', prediction_text='Kindly enter valid input ')
+               return render_template('predictor.html', prediction_text='Kindly enter valid input ')
 ###################################################################################################################        
          l.append(int(x))    
     
@@ -81,7 +78,7 @@ def predict():
     elif output == 0:
         output ='No'
 
-    return render_template('practice.html', prediction_text='Do I have PCOS ? {}'.format(output))
+    return render_template('predictor.html', prediction_text='Do I have PCOS ? {}'.format(output))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
